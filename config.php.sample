@@ -1,0 +1,12 @@
+<?php
+
+$CONFIG = array(
+    // This should point to the location of the sqlite db created
+    // with "prepare_db.php"
+    'sqlite_file' => "path_to_the_sqlite_db",
+    // get your recaptcha keys from recaptcha website
+    'recaptcha_secret' => 'recapctha_secret_here',
+    'recaptcha_sitekey' => 'recaptcha_key_here'
+);
+
+?>
