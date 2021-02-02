@@ -20,13 +20,14 @@ function search_by_cpf($cpf) {
 	global $sqlite_file;
 
 	// Extrai somente os números
-	$cpf = preg_replace( '/[^0-9]/is', '', $cpf );
+	//$cpf = preg_replace( '/[^0-9]/is', '', $cpf );
 	$hash = base64_encode(md5($cpf, true));
 
 	$db = new SQLite3($sqlite_file, SQLITE3_OPEN_READONLY);
 
-	$statement = $db->prepare('SELECT * FROM HASHES where CPF = :cpf');
-	$statement->bindValue(':cpf', $hash);
+	$statement = $db->prepare('SELECT * FROM HASHES where CPF in (:cpf, :hash)');
+	$statement->bindValue(':cpf', $cpf);
+	$statement->bindValue(':hash', $hash);
 
 	$results = $statement->execute();
 	if ($row = $results->fetchArray()) {
@@ -80,26 +81,30 @@ if (PHP_SAPI === 'cli') {
 		$cpf = $_POST["CPF"];
 		$nome = trim($_POST["nome"]);
 		$nasc = trim($_POST["nasc"]);
-    $time = strtotime($nasc);
     $captcha_fail=false;
   }
 }
 
 if (!$captcha_fail || $is_cli) {
-  if ($time) {
+  if ($nasc != "") {
+    $time = strtotime($nasc);
     $new_date = date('Y-m-d', $time);
+    $hashdate = base64_encode(md5($new_date, true));
   }
-  if (!validaCPF($cpf)) {
-    echo "CPF $cpf is not valid. Please use a valid CPF";
+  if ($nome != "") {
+    $hashnome = base64_encode(md5(strtolower($nome), true));
+  }
+  if (!validaCPF($cpf) && substr($cpf, 9, 2) != '==') {
+    echo "CPF $cpf is not valid and not a hash. Please use a valid CPF";
   } else {
     $results = search_by_cpf($cpf);
     if ($nasc == "" && $nome == "") {
       echo "Favor informar a data de nascimento ou o nome completo";
     } elseif ($results === false) {
       echo "O CPF " . htmlspecialchars($cpf) . " não foi encontrado na base.";
-    } elseif ($nasc != "" && base64_encode(md5($new_date, true)) != $results['NASC']) {
+    } elseif ($nasc != "" && $nasc != $results['NASC'] && $hashdate != $results['NASC']) {
       echo "Data de nascimento não confere.";
-    } elseif ($nome != "" && base64_encode(md5(strtolower($nome), true)) != $results['NOME']) {
+    } elseif ($nome != "" && $nome != $results['NOME'] && $hashnome != $results['NOME']) {
       echo "Nome completo não confere.";
     } else {
       $flags = $results['FLAGS'];
