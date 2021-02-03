@@ -94,8 +94,8 @@ if (!$captcha_fail || $is_cli) {
   if ($nome != "") {
     $hashnome = base64_encode(md5(strtolower($nome), true));
   }
-  if (!validaCPF($cpf) && substr($cpf, 9, 2) != '==') {
-    echo "CPF $cpf is not valid and not a hash. Please use a valid CPF";
+  if (!validaCPF($cpf) && substr($cpf, 22, 2) != '==') {
+    echo "CPF $cpf is not valid and is not a hash. Please use a valid CPF";
   } else {
     $results = search_by_cpf($cpf);
     if ($nasc == "" && $nome == "") {
@@ -111,7 +111,7 @@ if (!$captcha_fail || $is_cli) {
       $decoded = decode_flags($flags);
       echo "CPF: ". htmlspecialchars($cpf) ."<br />\n";
       if ($nome != "") echo "  Nome: ". htmlspecialchars($nome) ."<br />\n";
-      if ($nasc != "") echo "  Data de Nascimento: " . $new_date ."<br />\n";
+      if ($nasc != "") echo "  Data de Nascimento: " .  htmlspecialchars($nasc) ."<br />\n";
 ?>
     <table>
       <thead><tr><th>Tipo dos dados</th><th>Vazados?</th></tr></thead>

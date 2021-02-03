@@ -41,6 +41,11 @@ include "header.php";
     titular. O arquivo desta forma anonimizado foi então indexado e disponibilizado 
     no site para consulta, de forma que apenas aqueles que já tenham posse da 
     informação possam consultar sua presença no arquivo.
+    <p/>
+    Agora mais do que nunca o Vazei preza pela sua provacidade. Com as ultimas alterações
+    tornamos transparente para você a anonimização dos dados. Agora o navegador anonimiza os dados 
+    ainda na tela, antes de os enviar ao servidor. Nenhum dado pessoal sai do seu navegador.
+    O Vazei preza pela privacidade, e também pela transparência.
   </div>
 </div>
 <div class="row">

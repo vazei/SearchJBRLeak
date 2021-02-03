@@ -10,6 +10,25 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+<style>
+.color-box{margin:15px 0;padding-left:20px}
+.note-box,.warning-box,.tip-box{padding:8px 8px 3px 26px}
+.info-tab{float:left;margin-left:-23px}
+.content ul li{margin-top:7px}
+.extra{padding-top:5px}
+.green-box,.sky-box,.gray-box,.red-box,.pink-box{color:#000;margin-top:15px;padding:10px;background-color:#f6f8fa;border:1px solid #d7e2ec}
+.tip-box{color:#2e5014;background:#d5efc2}
+.tip-icon{background:#92CD59}
+.info-tab{width:40px;height:40px;display:inline-block;position:relative;top:8px}
+.info-tab::before,.info-tab::after{display:inline-block;color:#fff;line-height:normal;font-family:"icomoon";position:absolute}
+.info-tab i::before,.info-tab i::after{content:"";display:inline-block;position:absolute;left:0;bottom:-15px;transform:rotateX(60deg)}
+.info-tab i::before{width:20px;height:20px;box-shadow:inset 12px 0 13px rgba(0,0,0,0.5)}
+.info-tab i::after{width:0;height:0;border:12px solid transparent;border-bottom-color:#fff;border-left-color:#fff;bottom:-18px}
+.info-tab {background-size: 30px 30px; background-repeat: no-repeat; background-position: center; background-image: url("magnifying-glass.svg"); opacity: 0.8;}
+.tip-icon::before{font-size:24px;content:"";top:7px;left:9px}
+
+
+</style>
 
 <script type="text/javascript">
 function validaCPF(cpf) {
@@ -87,9 +106,4 @@ function gerahash() {
 <div class="container">
     <div class="jumbotron text-center">
         <h1>Pesquise seus dados vazados</h1>
-        <div class="row">
-            <div class="col-sm">
-                <p style="font-size: 80%"><b>Aviso:</b> Este site respeita a privacidade dos usuários. Nenhuma informação das consultas é armazenada em nossos servidores. Toda informação é devidamente anonimizada antes do uso através de algoritmos criptográficos irreversíveis. </p>
-            </div>
-        </div>
     </div>
