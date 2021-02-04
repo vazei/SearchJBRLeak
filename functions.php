@@ -113,12 +113,12 @@ $files = [
 function create_links($pos) {
     global $files,$descriptions;
     $current_files = $files[$pos];
-    $ret = $descriptions[$pos];
+    $ret = "";
     for ($i = 0 ; $i < count($current_files); $i++) {
         $current_file = $current_files[$i];
-        $ret .= "<a href=\"references/$current_file\" target=\"_blank\">[$i]</a>";
+        $ret .= "<a href=\"references/$current_file\" target=\"_blank\">[".($i+1)."]</a>";
     }
-    return " <sup>".$ret."</sup>";
+    return $descriptions[$pos] . " <sup>".$ret."</sup>";
 }
 
 
