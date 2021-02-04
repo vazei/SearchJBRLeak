@@ -108,7 +108,6 @@ if (!$captcha_fail || $is_cli) {
       echo "Nome completo não confere.";
     } else {
       $flags = $results['FLAGS'];
-      $decoded = decode_flags($flags);
       echo "CPF: ". htmlspecialchars($cpf) ."<br />\n";
       if ($nome != "") echo "  Nome: ". htmlspecialchars($nome) ."<br />\n";
       if ($nasc != "") echo "  Data de Nascimento: " .  htmlspecialchars($nasc) ."<br />\n";
@@ -119,7 +118,7 @@ if (!$captcha_fail || $is_cli) {
 <?php
   	  for ($i = 36; $i >= 0; $i--) {
 ?>
-        <tr><td><?php echo $descriptions[37-$i]; ?></td><td><?php echo ((($flags / 2**$i) % 2)?"Sim":"-") ?></td></tr>
+        <tr><td><?php echo create_links(37-$i); ?></td><td><?php echo ((($flags / 2**$i) % 2)?"Sim":"-") ?></td></tr>
 <?php
       }
 ?>

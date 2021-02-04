@@ -111,26 +111,15 @@ $files = [
 ];
 
 function create_links($pos) {
-    global $files;
-    $current_files = $files[$idx];
-    $ret = "";
+    global $files,$descriptions;
+    $current_files = $files[$pos];
+    $ret = $descriptions[$pos];
     for ($i = 0 ; $i < count($current_files); $i++) {
         $current_file = $current_files[$i];
-        $ret += "<a href=\"references/$current_file\" target=\"_blank\">[$i]</a>";
+        $ret .= "<a href=\"references/$current_file\" target=\"_blank\">[$i]</a>";
     }
-    return ret;
+    return " <sup>".$ret."</sup>";
 }
 
-function decode_flags($flags) {
-	global $descriptions;
-	$result = array();
-	for ($i = 36; $i >= 0; $i--) {
-		if (($flags / 2**$i) % 2) {
-            $links = create_links($files[37-$i]);
-			array_push($result, $descriptions[37-$i] + "<sup>$links</sup>");
-		}
-	}
-	return $result;
-}
 
 ?>

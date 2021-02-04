@@ -1,3 +1,4 @@
 config.php
 *.sqlite
-tmp.sqlite-journal
+*.sqlite-journal
+references
